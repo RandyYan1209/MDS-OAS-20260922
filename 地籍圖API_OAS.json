@@ -1,0 +1,197 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "國土測繪圖資雲地籍圖API服務",
+    "description": "提供國土測繪圖資雲地籍圖API服務 (v1.0 規範版本)",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://api.nlsc.gov.tw"
+    }
+  ],
+  "tags": [
+    {
+      "name": "地籍圖",
+      "description": "國土測繪圖資雲 - 地籍圖 API"
+    }
+  ],
+  "paths": {
+    "/dmaps/CadasMapQuery/{county}/{sect}/{landno}/{type}/{epsg}": {
+      "get": {
+        "tags": [
+          "地籍圖"
+        ],
+        "summary": "API_地籍圖_指定地號查詢_全國",
+        "description": "API_地籍圖_指定地號查詢_全國",
+        "operationId": "2dms_cadapi_v1_CadasMapQuery",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "county",
+            "in": "path",
+            "required": true,
+            "description": "縣市代碼\n\n| 代碼 | 名稱 |\n|---|---|\n| A | 臺北市 |\n| B | 臺中市 |\n| C | 基隆市 |\n| D | 臺南市 |\n| E | 高雄市 |\n| F | 新北市 |\n| G | 宜蘭縣 |\n| H | 桃園市 |\n| I | 嘉義市 |\n| J | 新竹縣 |\n| K | 苗栗縣 |\n| M | 南投縣 |\n| N | 彰化縣 |\n| O | 新竹市 |\n| P | 雲林縣 |\n| Q | 嘉義縣 |\n| T | 屏東縣 |\n| U | 花蓮縣 |\n| V | 臺東縣 |\n| W | 金門縣 |\n| X | 澎湖縣 |\n| Z | 連江縣 |",
+            "schema": {
+              "type": "string",
+              "example": "A"
+            }
+          },
+          {
+            "name": "sect",
+            "in": "path",
+            "required": true,
+            "description": "地段代碼 (4碼，例如 0001)",
+            "schema": {
+              "type": "string",
+              "example": "0001"
+            }
+          },
+          {
+            "name": "landno",
+            "in": "path",
+            "required": true,
+            "description": "地號(8碼)",
+            "schema": {
+              "type": "string",
+              "example": "00010000"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "檔案格式(gml, kml, shp)",
+            "schema": {
+              "type": "string",
+              "example": "gml"
+            }
+          },
+          {
+            "name": "epsg",
+            "in": "path",
+            "required": true,
+            "description": "坐標類別代碼(4326、3826，預設將使用經緯度)",
+            "schema": {
+              "type": "string",
+              "example": "4326"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應。依據輸入參數 (type / returnType) 回傳對應格式之圖資檔案（GML、KML 或 ESRI Shapefile ZIP 壓縮檔）",
+            "content": {
+              "application/gml+xml": {
+                "schema": {
+                  "type": "string",
+                  "description": "GML (Geography Markup Language) 空間地理標記語言 XML 內容"
+                }
+              },
+              "application/vnd.google-earth.kml+xml": {
+                "schema": {
+                  "type": "string",
+                  "description": "KML (Keyhole Markup Language) Google Earth 空間標記語言 XML 內容"
+                }
+              },
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "ESRI Shapefile 包含 .shp, .shx, .dbf, .prj 等圖層檔案之 ZIP 壓縮包"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "請求參數錯誤或超出查詢範圍"
+          }
+        }
+      }
+    },
+    "/dmaps/CadasMapPointQuery/{pointX}/{pointY}/{epsg}/{returnType}": {
+      "get": {
+        "tags": [
+          "地籍圖"
+        ],
+        "summary": "API_地籍圖_指定坐標查詢_全國",
+        "description": "API_地籍圖_指定坐標查詢_全國",
+        "operationId": "2dms_cadapi_v1_CadasMapPointQuery",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "pointX",
+            "in": "path",
+            "required": true,
+            "description": "X坐標 (需搭配 epsg 欄位指定之坐標系統)",
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 121.517
+            }
+          },
+          {
+            "name": "pointY",
+            "in": "path",
+            "required": true,
+            "description": "Y坐標 (需搭配 epsg 欄位指定之坐標系統)",
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 25.047
+            }
+          },
+          {
+            "name": "epsg",
+            "in": "path",
+            "required": true,
+            "description": "坐標類別代碼(4326、3826，預設將使用經緯度)",
+            "schema": {
+              "type": "string",
+              "example": "4326"
+            }
+          },
+          {
+            "name": "returnType",
+            "in": "path",
+            "required": true,
+            "description": "檔案格式(GML,KML,SHP)",
+            "schema": {
+              "type": "string",
+              "example": "GML"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應。依據輸入參數 (type / returnType) 回傳對應格式之圖資檔案（GML、KML 或 ESRI Shapefile ZIP 壓縮檔）",
+            "content": {
+              "application/gml+xml": {
+                "schema": {
+                  "type": "string",
+                  "description": "GML (Geography Markup Language) 空間地理標記語言 XML 內容"
+                }
+              },
+              "application/vnd.google-earth.kml+xml": {
+                "schema": {
+                  "type": "string",
+                  "description": "KML (Keyhole Markup Language) Google Earth 空間標記語言 XML 內容"
+                }
+              },
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "ESRI Shapefile 包含 .shp, .shx, .dbf, .prj 等圖層檔案之 ZIP 壓縮包"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "請求參數錯誤或超出查詢範圍"
+          }
+        }
+      }
+    }
+  }
+}

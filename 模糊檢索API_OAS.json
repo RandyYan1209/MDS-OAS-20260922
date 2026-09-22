@@ -1,0 +1,3035 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "國土測繪圖資雲模糊檢索API服務",
+    "description": "提供國土測繪圖資雲模糊檢索API服務 (v1.0 規範版本)",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://api.nlsc.gov.tw"
+    }
+  ],
+  "tags": [
+    {
+      "name": "模糊檢索",
+      "description": "國土測繪圖資雲 - 模糊檢索 API"
+    }
+  ],
+  "paths": {
+    "/idc/TextQueryMap/{queryString}/{number}/{county}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_全域模糊檢索_全國",
+        "description": "API_模糊檢索_全域模糊檢索_全國",
+        "operationId": "2dms_addrm_v1_TextQueryMap",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "path",
+            "required": true,
+            "description": "搜尋字串",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路一段122號"
+            }
+          },
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "description": "回傳數量 (預設為10，最小1，最大30)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30,
+              "example": 10
+            }
+          },
+          {
+            "name": "county",
+            "in": "path",
+            "required": true,
+            "description": "輔助條件 (縣市代碼 或 參考點WGS84，例如 A 或 121.51,25.04)",
+            "schema": {
+              "type": "string",
+              "example": "A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextQueryMapList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/TextQueryAddress/{queryString}/{num}/{county}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_模糊檢索_全國",
+        "description": "API_模糊檢索_模糊檢索_全國",
+        "operationId": "2dms_addrm_v1_TextQueryAddress",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "path",
+            "required": true,
+            "description": "搜尋字串",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路一段122號"
+            }
+          },
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "description": "回傳數量 (預設為10，最小1，最大30)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30,
+              "example": 10
+            }
+          },
+          {
+            "name": "county",
+            "in": "path",
+            "required": true,
+            "description": "縣市代碼",
+            "schema": {
+              "type": "string",
+              "example": "A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextQueryAddressList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/G/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_宜蘭縣",
+        "description": "API_模糊檢索_路名清單_宜蘭縣",
+        "operationId": "2dms_addrm_v1_ListRoad_G",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| G01 | 宜蘭市 |\n| G02 | 頭城鎮 |\n| G03 | 礁溪鄉 |\n| G04 | 壯圍鄉 |\n| G05 | 員山鄉 |\n| G06 | 羅東鎮 |\n| G07 | 五結鄉 |\n| G08 | 冬山鄉 |\n| G09 | 蘇澳鎮 |\n| G10 | 三星鄉 |\n| G11 | 大同鄉 |\n| G12 | 南澳鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12"
+              ],
+              "example": "G01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/U/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_花蓮縣",
+        "description": "API_模糊檢索_路名清單_花蓮縣",
+        "operationId": "2dms_addrm_v1_ListRoad_U",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| U01 | 花蓮市 |\n| U02 | 光復鄉 |\n| U03 | 玉里鎮 |\n| U04 | 新城鄉 |\n| U05 | 吉安鄉 |\n| U06 | 壽豐鄉 |\n| U07 | 鳳林鎮 |\n| U08 | 豐濱鄉 |\n| U09 | 瑞穗鄉 |\n| U10 | 富里鄉 |\n| U11 | 秀林鄉 |\n| U12 | 萬榮鄉 |\n| U13 | 卓溪鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "U01",
+                "U02",
+                "U03",
+                "U04",
+                "U05",
+                "U06",
+                "U07",
+                "U08",
+                "U09",
+                "U10",
+                "U11",
+                "U12",
+                "U13"
+              ],
+              "example": "U01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/W/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_金門縣",
+        "description": "API_模糊檢索_路名清單_金門縣",
+        "operationId": "2dms_addrm_v1_ListRoad_W",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| W01 | 金湖鎮 |\n| W02 | 金沙鎮 |\n| W03 | 金城鎮 |\n| W04 | 金寧鄉 |\n| W05 | 烈嶼鄉 |\n| W06 | 烏坵鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "W01",
+                "W02",
+                "W03",
+                "W04",
+                "W05",
+                "W06"
+              ],
+              "example": "W01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/M/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_南投縣",
+        "description": "API_模糊檢索_路名清單_南投縣",
+        "operationId": "2dms_addrm_v1_ListRoad_M",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| M01 | 南投市 |\n| M02 | 埔里鎮 |\n| M03 | 草屯鎮 |\n| M04 | 竹山鎮 |\n| M05 | 集集鎮 |\n| M06 | 名間鄉 |\n| M07 | 鹿谷鄉 |\n| M08 | 中寮鄉 |\n| M09 | 魚池鄉 |\n| M10 | 國姓鄉 |\n| M11 | 水里鄉 |\n| M12 | 信義鄉 |\n| M13 | 仁愛鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "M01",
+                "M02",
+                "M03",
+                "M04",
+                "M05",
+                "M06",
+                "M07",
+                "M08",
+                "M09",
+                "M10",
+                "M11",
+                "M12",
+                "M13"
+              ],
+              "example": "M01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/T/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_屏東縣",
+        "description": "API_模糊檢索_路名清單_屏東縣",
+        "operationId": "2dms_addrm_v1_ListRoad_T",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| T01 | 屏東市 |\n| T02 | 潮州鎮 |\n| T03 | 東港鎮 |\n| T04 | 恆春鎮 |\n| T05 | 萬丹鄉 |\n| T06 | 長治鄉 |\n| T07 | 麟洛鄉 |\n| T08 | 九如鄉 |\n| T09 | 里港鄉 |\n| T10 | 鹽埔鄉 |\n| T11 | 高樹鄉 |\n| T12 | 萬巒鄉 |\n| T13 | 內埔鄉 |\n| T14 | 竹田鄉 |\n| T15 | 新埤鄉 |\n| T16 | 枋寮鄉 |\n| T17 | 新園鄉 |\n| T18 | 崁頂鄉 |\n| T19 | 林邊鄉 |\n| T20 | 南州鄉 |\n| T21 | 佳冬鄉 |\n| T22 | 琉球鄉 |\n| T23 | 車城鄉 |\n| T24 | 滿州鄉 |\n| T25 | 枋山鄉 |\n| T26 | 三地門鄉 |\n| T27 | 霧臺鄉 |\n| T28 | 瑪家鄉 |\n| T29 | 泰武鄉 |\n| T30 | 來義鄉 |\n| T31 | 春日鄉 |\n| T32 | 獅子鄉 |\n| T33 | 牡丹鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "T01",
+                "T02",
+                "T03",
+                "T04",
+                "T05",
+                "T06",
+                "T07",
+                "T08",
+                "T09",
+                "T10",
+                "T11",
+                "T12",
+                "T13",
+                "T14",
+                "T15",
+                "T16",
+                "T17",
+                "T18",
+                "T19",
+                "T20",
+                "T21",
+                "T22",
+                "T23",
+                "T24",
+                "T25",
+                "T26",
+                "T27",
+                "T28",
+                "T29",
+                "T30",
+                "T31",
+                "T32",
+                "T33"
+              ],
+              "example": "T01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/K/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_苗栗縣",
+        "description": "API_模糊檢索_路名清單_苗栗縣",
+        "operationId": "2dms_addrm_v1_ListRoad_K",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| K01 | 苗栗市 |\n| K02 | 苑裡鎮 |\n| K03 | 通霄鎮 |\n| K04 | 公館鄉 |\n| K05 | 銅鑼鄉 |\n| K06 | 三義鄉 |\n| K07 | 西湖鄉 |\n| K08 | 頭屋鄉 |\n| K09 | 竹南鎮 |\n| K10 | 頭份市 |\n| K11 | 造橋鄉 |\n| K12 | 後龍鎮 |\n| K13 | 三灣鄉 |\n| K14 | 南庄鄉 |\n| K15 | 大湖鄉 |\n| K16 | 卓蘭鎮 |\n| K17 | 獅潭鄉 |\n| K18 | 泰安鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "K01",
+                "K02",
+                "K03",
+                "K04",
+                "K05",
+                "K06",
+                "K07",
+                "K08",
+                "K09",
+                "K10",
+                "K11",
+                "K12",
+                "K13",
+                "K14",
+                "K15",
+                "K16",
+                "K17",
+                "K18"
+              ],
+              "example": "K01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/H/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_桃園市",
+        "description": "API_模糊檢索_路名清單_桃園市",
+        "operationId": "2dms_addrm_v1_ListRoad_H",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| H01 | 桃園區 |\n| H02 | 大溪區 |\n| H03 | 中壢區 |\n| H04 | 楊梅區 |\n| H05 | 蘆竹區 |\n| H06 | 大園區 |\n| H07 | 龜山區 |\n| H08 | 八德區 |\n| H09 | 龍潭區 |\n| H10 | 平鎮區 |\n| H11 | 新屋區 |\n| H12 | 觀音區 |\n| H13 | 復興區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "H01",
+                "H02",
+                "H03",
+                "H04",
+                "H05",
+                "H06",
+                "H07",
+                "H08",
+                "H09",
+                "H10",
+                "H11",
+                "H12",
+                "H13"
+              ],
+              "example": "H01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/E/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_高雄市",
+        "description": "API_模糊檢索_路名清單_高雄市",
+        "operationId": "2dms_addrm_v1_ListRoad_E",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| E01 | 鹽埕區 |\n| E02 | 鼓山區 |\n| E03 | 左營區 |\n| E04 | 楠梓區 |\n| E05 | 三民區 |\n| E06 | 新興區 |\n| E07 | 前金區 |\n| E08 | 苓雅區 |\n| E09 | 前鎮區 |\n| E10 | 旗津區 |\n| E11 | 小港區 |\n| E12 | 鳳山區 |\n| E13 | 林園區 |\n| E14 | 大寮區 |\n| E15 | 大樹區 |\n| E16 | 大社區 |\n| E17 | 仁武區 |\n| E18 | 鳥松區 |\n| E19 | 岡山區 |\n| E20 | 橋頭區 |\n| E21 | 燕巢區 |\n| E22 | 田寮區 |\n| E23 | 阿蓮區 |\n| E24 | 路竹區 |\n| E25 | 湖內區 |\n| E26 | 茄萣區 |\n| E27 | 永安區 |\n| E28 | 彌陀區 |\n| E29 | 梓官區 |\n| E30 | 旗山區 |\n| E31 | 美濃區 |\n| E32 | 六龜區 |\n| E33 | 甲仙區 |\n| E34 | 杉林區 |\n| E35 | 內門區 |\n| E36 | 茂林區 |\n| E37 | 桃源區 |\n| E38 | 那瑪夏區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "E01",
+                "E02",
+                "E03",
+                "E04",
+                "E05",
+                "E06",
+                "E07",
+                "E08",
+                "E09",
+                "E10",
+                "E11",
+                "E12",
+                "E13",
+                "E14",
+                "E15",
+                "E16",
+                "E17",
+                "E18",
+                "E19",
+                "E20",
+                "E21",
+                "E22",
+                "E23",
+                "E24",
+                "E25",
+                "E26",
+                "E27",
+                "E28",
+                "E29",
+                "E30",
+                "E31",
+                "E32",
+                "E33",
+                "E34",
+                "E35",
+                "E36",
+                "E37",
+                "E38"
+              ],
+              "example": "E01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/C/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_基隆市",
+        "description": "API_模糊檢索_路名清單_基隆市",
+        "operationId": "2dms_addrm_v1_ListRoad_C",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| C01 | 中正區 |\n| C02 | 七堵區 |\n| C03 | 暖暖區 |\n| C04 | 仁愛區 |\n| C05 | 中山區 |\n| C06 | 安樂區 |\n| C07 | 信義區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C01",
+                "C02",
+                "C03",
+                "C04",
+                "C05",
+                "C06",
+                "C07"
+              ],
+              "example": "C01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/Z/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_連江縣",
+        "description": "API_模糊檢索_路名清單_連江縣",
+        "operationId": "2dms_addrm_v1_ListRoad_Z",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| Z01 | 南竿鄉 |\n| Z02 | 北竿鄉 |\n| Z03 | 莒光鄉 |\n| Z04 | 東引鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Z01",
+                "Z02",
+                "Z03",
+                "Z04"
+              ],
+              "example": "Z01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/P/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_雲林縣",
+        "description": "API_模糊檢索_路名清單_雲林縣",
+        "operationId": "2dms_addrm_v1_ListRoad_P",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| P01 | 斗六市 |\n| P02 | 斗南鎮 |\n| P03 | 虎尾鎮 |\n| P04 | 西螺鎮 |\n| P05 | 土庫鎮 |\n| P06 | 北港鎮 |\n| P07 | 古坑鄉 |\n| P08 | 大埤鄉 |\n| P09 | 莿桐鄉 |\n| P10 | 林內鄉 |\n| P11 | 二崙鄉 |\n| P12 | 崙背鄉 |\n| P13 | 麥寮鄉 |\n| P14 | 東勢鄉 |\n| P15 | 褒忠鄉 |\n| P16 | 臺西鄉 |\n| P17 | 元長鄉 |\n| P18 | 四湖鄉 |\n| P19 | 口湖鄉 |\n| P20 | 水林鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "P01",
+                "P02",
+                "P03",
+                "P04",
+                "P05",
+                "P06",
+                "P07",
+                "P08",
+                "P09",
+                "P10",
+                "P11",
+                "P12",
+                "P13",
+                "P14",
+                "P15",
+                "P16",
+                "P17",
+                "P18",
+                "P19",
+                "P20"
+              ],
+              "example": "P01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/F/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_新北市",
+        "description": "API_模糊檢索_路名清單_新北市",
+        "operationId": "2dms_addrm_v1_ListRoad_F",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| F01 | 新莊區 |\n| F02 | 林口區 |\n| F03 | 五股區 |\n| F04 | 蘆洲區 |\n| F05 | 三重區 |\n| F06 | 泰山區 |\n| F07 | 新店區 |\n| F08 | 石碇區 |\n| F09 | 深坑區 |\n| F10 | 坪林區 |\n| F11 | 烏來區 |\n| F14 | 板橋區 |\n| F15 | 三峽區 |\n| F16 | 鶯歌區 |\n| F17 | 樹林區 |\n| F18 | 中和區 |\n| F19 | 土城區 |\n| F21 | 瑞芳區 |\n| F22 | 平溪區 |\n| F23 | 雙溪區 |\n| F24 | 貢寮區 |\n| F25 | 金山區 |\n| F26 | 萬里區 |\n| F27 | 淡水區 |\n| F28 | 汐止區 |\n| F30 | 三芝區 |\n| F31 | 石門區 |\n| F32 | 八里區 |\n| F33 | 永和區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "F01",
+                "F02",
+                "F03",
+                "F04",
+                "F05",
+                "F06",
+                "F07",
+                "F08",
+                "F09",
+                "F10",
+                "F11",
+                "F14",
+                "F15",
+                "F16",
+                "F17",
+                "F18",
+                "F19",
+                "F21",
+                "F22",
+                "F23",
+                "F24",
+                "F25",
+                "F26",
+                "F27",
+                "F28",
+                "F30",
+                "F31",
+                "F32",
+                "F33"
+              ],
+              "example": "F01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/O/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_新竹市",
+        "description": "API_模糊檢索_路名清單_新竹市",
+        "operationId": "2dms_addrm_v1_ListRoad_O",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| O01 | 新竹市 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "O01"
+              ],
+              "example": "O01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/J/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_新竹縣",
+        "description": "API_模糊檢索_路名清單_新竹縣",
+        "operationId": "2dms_addrm_v1_ListRoad_J",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| J02 | 竹東鎮 |\n| J03 | 關西鎮 |\n| J04 | 新埔鎮 |\n| J05 | 竹北市 |\n| J06 | 湖口鄉 |\n| J08 | 橫山鄉 |\n| J09 | 新豐鄉 |\n| J10 | 芎林鄉 |\n| J11 | 寶山鄉 |\n| J12 | 北埔鄉 |\n| J13 | 峨眉鄉 |\n| J14 | 尖石鄉 |\n| J15 | 五峰鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "J02",
+                "J03",
+                "J04",
+                "J05",
+                "J06",
+                "J08",
+                "J09",
+                "J10",
+                "J11",
+                "J12",
+                "J13",
+                "J14",
+                "J15"
+              ],
+              "example": "J02"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/I/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_嘉義市",
+        "description": "API_模糊檢索_路名清單_嘉義市",
+        "operationId": "2dms_addrm_v1_ListRoad_I",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| I01 | 嘉義市 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "I01"
+              ],
+              "example": "I01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/Q/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_嘉義縣",
+        "description": "API_模糊檢索_路名清單_嘉義縣",
+        "operationId": "2dms_addrm_v1_ListRoad_Q",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| Q02 | 朴子市 |\n| Q03 | 布袋鎮 |\n| Q04 | 大林鎮 |\n| Q05 | 民雄鄉 |\n| Q06 | 溪口鄉 |\n| Q07 | 新港鄉 |\n| Q08 | 六腳鄉 |\n| Q09 | 東石鄉 |\n| Q10 | 義竹鄉 |\n| Q11 | 鹿草鄉 |\n| Q12 | 太保市 |\n| Q13 | 水上鄉 |\n| Q14 | 中埔鄉 |\n| Q15 | 竹崎鄉 |\n| Q16 | 梅山鄉 |\n| Q17 | 番路鄉 |\n| Q18 | 大埔鄉 |\n| Q20 | 阿里山鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Q02",
+                "Q03",
+                "Q04",
+                "Q05",
+                "Q06",
+                "Q07",
+                "Q08",
+                "Q09",
+                "Q10",
+                "Q11",
+                "Q12",
+                "Q13",
+                "Q14",
+                "Q15",
+                "Q16",
+                "Q17",
+                "Q18",
+                "Q20"
+              ],
+              "example": "Q02"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/N/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_彰化縣",
+        "description": "API_模糊檢索_路名清單_彰化縣",
+        "operationId": "2dms_addrm_v1_ListRoad_N",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| N01 | 彰化市 |\n| N02 | 鹿港鎮 |\n| N03 | 和美鎮 |\n| N04 | 北斗鎮 |\n| N05 | 員林市 |\n| N06 | 溪湖鎮 |\n| N07 | 田中鎮 |\n| N08 | 二林鎮 |\n| N09 | 線西鄉 |\n| N10 | 伸港鄉 |\n| N11 | 福興鄉 |\n| N12 | 秀水鄉 |\n| N13 | 花壇鄉 |\n| N14 | 芬園鄉 |\n| N15 | 大村鄉 |\n| N16 | 埔鹽鄉 |\n| N17 | 埔心鄉 |\n| N18 | 永靖鄉 |\n| N19 | 社頭鄉 |\n| N20 | 二水鄉 |\n| N21 | 田尾鄉 |\n| N22 | 埤頭鄉 |\n| N23 | 芳苑鄉 |\n| N24 | 大城鄉 |\n| N25 | 竹塘鄉 |\n| N26 | 溪州鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "N01",
+                "N02",
+                "N03",
+                "N04",
+                "N05",
+                "N06",
+                "N07",
+                "N08",
+                "N09",
+                "N10",
+                "N11",
+                "N12",
+                "N13",
+                "N14",
+                "N15",
+                "N16",
+                "N17",
+                "N18",
+                "N19",
+                "N20",
+                "N21",
+                "N22",
+                "N23",
+                "N24",
+                "N25",
+                "N26"
+              ],
+              "example": "N01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/B/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_臺中市",
+        "description": "API_模糊檢索_路名清單_臺中市",
+        "operationId": "2dms_addrm_v1_ListRoad_B",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| B01 | 中區 |\n| B02 | 東區 |\n| B03 | 南區 |\n| B04 | 西區 |\n| B05 | 北區 |\n| B06 | 西屯區 |\n| B07 | 南屯區 |\n| B08 | 北屯區 |\n| B09 | 豐原區 |\n| B10 | 東勢區 |\n| B11 | 大甲區 |\n| B12 | 清水區 |\n| B13 | 沙鹿區 |\n| B14 | 梧棲區 |\n| B15 | 后里區 |\n| B16 | 神岡區 |\n| B17 | 潭子區 |\n| B18 | 大雅區 |\n| B19 | 新社區 |\n| B20 | 石岡區 |\n| B21 | 外埔區 |\n| B22 | 大安區 |\n| B23 | 烏日區 |\n| B24 | 大肚區 |\n| B25 | 龍井區 |\n| B26 | 霧峰區 |\n| B27 | 太平區 |\n| B28 | 大里區 |\n| B29 | 和平區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "B19",
+                "B20",
+                "B21",
+                "B22",
+                "B23",
+                "B24",
+                "B25",
+                "B26",
+                "B27",
+                "B28",
+                "B29"
+              ],
+              "example": "B01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/A/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_臺北市",
+        "description": "API_模糊檢索_路名清單_臺北市",
+        "operationId": "2dms_addrm_v1_ListRoad_A",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| A01 | 松山區 |\n| A02 | 大安區 |\n| A03 | 中正區 |\n| A05 | 萬華區 |\n| A09 | 大同區 |\n| A10 | 中山區 |\n| A11 | 文山區 |\n| A13 | 南港區 |\n| A14 | 內湖區 |\n| A15 | 士林區 |\n| A16 | 北投區 |\n| A17 | 信義區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A01",
+                "A02",
+                "A03",
+                "A05",
+                "A09",
+                "A10",
+                "A11",
+                "A13",
+                "A14",
+                "A15",
+                "A16",
+                "A17"
+              ],
+              "example": "A01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/V/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_臺東縣",
+        "description": "API_模糊檢索_路名清單_臺東縣",
+        "operationId": "2dms_addrm_v1_ListRoad_V",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| V01 | 臺東市 |\n| V02 | 成功鎮 |\n| V03 | 關山鎮 |\n| V04 | 卑南鄉 |\n| V05 | 大武鄉 |\n| V06 | 太麻里鄉 |\n| V07 | 東河鄉 |\n| V08 | 長濱鄉 |\n| V09 | 鹿野鄉 |\n| V10 | 池上鄉 |\n| V11 | 綠島鄉 |\n| V12 | 延平鄉 |\n| V13 | 海端鄉 |\n| V14 | 達仁鄉 |\n| V15 | 金峰鄉 |\n| V16 | 蘭嶼鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "V01",
+                "V02",
+                "V03",
+                "V04",
+                "V05",
+                "V06",
+                "V07",
+                "V08",
+                "V09",
+                "V10",
+                "V11",
+                "V12",
+                "V13",
+                "V14",
+                "V15",
+                "V16"
+              ],
+              "example": "V01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/D/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_臺南市",
+        "description": "API_模糊檢索_路名清單_臺南市",
+        "operationId": "2dms_addrm_v1_ListRoad_D",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| D01 | 東區 |\n| D02 | 南區 |\n| D04 | 北區 |\n| D06 | 安南區 |\n| D07 | 安平區 |\n| D08 | 中西區 |\n| D09 | 新營區 |\n| D10 | 鹽水區 |\n| D11 | 柳營區 |\n| D12 | 白河區 |\n| D13 | 後壁區 |\n| D14 | 東山區 |\n| D15 | 麻豆區 |\n| D16 | 下營區 |\n| D17 | 六甲區 |\n| D18 | 官田區 |\n| D19 | 大內區 |\n| D20 | 佳里區 |\n| D21 | 西港區 |\n| D22 | 七股區 |\n| D23 | 將軍區 |\n| D24 | 北門區 |\n| D25 | 學甲區 |\n| D26 | 新化區 |\n| D27 | 善化區 |\n| D28 | 新市區 |\n| D29 | 安定區 |\n| D30 | 山上區 |\n| D31 | 左鎮區 |\n| D32 | 仁德區 |\n| D33 | 歸仁區 |\n| D34 | 關廟區 |\n| D35 | 龍崎區 |\n| D36 | 玉井區 |\n| D37 | 楠西區 |\n| D38 | 南化區 |\n| D39 | 永康區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "D01",
+                "D02",
+                "D04",
+                "D06",
+                "D07",
+                "D08",
+                "D09",
+                "D10",
+                "D11",
+                "D12",
+                "D13",
+                "D14",
+                "D15",
+                "D16",
+                "D17",
+                "D18",
+                "D19",
+                "D20",
+                "D21",
+                "D22",
+                "D23",
+                "D24",
+                "D25",
+                "D26",
+                "D27",
+                "D28",
+                "D29",
+                "D30",
+                "D31",
+                "D32",
+                "D33",
+                "D34",
+                "D35",
+                "D36",
+                "D37",
+                "D38",
+                "D39"
+              ],
+              "example": "D01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoad/X/{town}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_路名清單_澎湖縣",
+        "description": "API_模糊檢索_路名清單_澎湖縣",
+        "operationId": "2dms_addrm_v1_ListRoad_X",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| X01 | 馬公市 |\n| X02 | 湖西鄉 |\n| X03 | 白沙鄉 |\n| X04 | 西嶼鄉 |\n| X05 | 望安鄉 |\n| X06 | 七美鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "X01",
+                "X02",
+                "X03",
+                "X04",
+                "X05",
+                "X06"
+              ],
+              "example": "X01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/G/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_宜蘭縣",
+        "description": "API_模糊檢索_巷弄清單_宜蘭縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_G",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| G01 | 宜蘭市 |\n| G02 | 頭城鎮 |\n| G03 | 礁溪鄉 |\n| G04 | 壯圍鄉 |\n| G05 | 員山鄉 |\n| G06 | 羅東鎮 |\n| G07 | 五結鄉 |\n| G08 | 冬山鄉 |\n| G09 | 蘇澳鎮 |\n| G10 | 三星鄉 |\n| G11 | 大同鄉 |\n| G12 | 南澳鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "G01",
+                "G02",
+                "G03",
+                "G04",
+                "G05",
+                "G06",
+                "G07",
+                "G08",
+                "G09",
+                "G10",
+                "G11",
+                "G12"
+              ],
+              "example": "G01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/U/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_花蓮縣",
+        "description": "API_模糊檢索_巷弄清單_花蓮縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_U",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| U01 | 花蓮市 |\n| U02 | 光復鄉 |\n| U03 | 玉里鎮 |\n| U04 | 新城鄉 |\n| U05 | 吉安鄉 |\n| U06 | 壽豐鄉 |\n| U07 | 鳳林鎮 |\n| U08 | 豐濱鄉 |\n| U09 | 瑞穗鄉 |\n| U10 | 富里鄉 |\n| U11 | 秀林鄉 |\n| U12 | 萬榮鄉 |\n| U13 | 卓溪鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "U01",
+                "U02",
+                "U03",
+                "U04",
+                "U05",
+                "U06",
+                "U07",
+                "U08",
+                "U09",
+                "U10",
+                "U11",
+                "U12",
+                "U13"
+              ],
+              "example": "U01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/W/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_金門縣",
+        "description": "API_模糊檢索_巷弄清單_金門縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_W",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| W01 | 金湖鎮 |\n| W02 | 金沙鎮 |\n| W03 | 金城鎮 |\n| W04 | 金寧鄉 |\n| W05 | 烈嶼鄉 |\n| W06 | 烏坵鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "W01",
+                "W02",
+                "W03",
+                "W04",
+                "W05",
+                "W06"
+              ],
+              "example": "W01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/M/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_南投縣",
+        "description": "API_模糊檢索_巷弄清單_南投縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_M",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| M01 | 南投市 |\n| M02 | 埔里鎮 |\n| M03 | 草屯鎮 |\n| M04 | 竹山鎮 |\n| M05 | 集集鎮 |\n| M06 | 名間鄉 |\n| M07 | 鹿谷鄉 |\n| M08 | 中寮鄉 |\n| M09 | 魚池鄉 |\n| M10 | 國姓鄉 |\n| M11 | 水里鄉 |\n| M12 | 信義鄉 |\n| M13 | 仁愛鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "M01",
+                "M02",
+                "M03",
+                "M04",
+                "M05",
+                "M06",
+                "M07",
+                "M08",
+                "M09",
+                "M10",
+                "M11",
+                "M12",
+                "M13"
+              ],
+              "example": "M01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/T/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_屏東縣",
+        "description": "API_模糊檢索_巷弄清單_屏東縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_T",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| T01 | 屏東市 |\n| T02 | 潮州鎮 |\n| T03 | 東港鎮 |\n| T04 | 恆春鎮 |\n| T05 | 萬丹鄉 |\n| T06 | 長治鄉 |\n| T07 | 麟洛鄉 |\n| T08 | 九如鄉 |\n| T09 | 里港鄉 |\n| T10 | 鹽埔鄉 |\n| T11 | 高樹鄉 |\n| T12 | 萬巒鄉 |\n| T13 | 內埔鄉 |\n| T14 | 竹田鄉 |\n| T15 | 新埤鄉 |\n| T16 | 枋寮鄉 |\n| T17 | 新園鄉 |\n| T18 | 崁頂鄉 |\n| T19 | 林邊鄉 |\n| T20 | 南州鄉 |\n| T21 | 佳冬鄉 |\n| T22 | 琉球鄉 |\n| T23 | 車城鄉 |\n| T24 | 滿州鄉 |\n| T25 | 枋山鄉 |\n| T26 | 三地門鄉 |\n| T27 | 霧臺鄉 |\n| T28 | 瑪家鄉 |\n| T29 | 泰武鄉 |\n| T30 | 來義鄉 |\n| T31 | 春日鄉 |\n| T32 | 獅子鄉 |\n| T33 | 牡丹鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "T01",
+                "T02",
+                "T03",
+                "T04",
+                "T05",
+                "T06",
+                "T07",
+                "T08",
+                "T09",
+                "T10",
+                "T11",
+                "T12",
+                "T13",
+                "T14",
+                "T15",
+                "T16",
+                "T17",
+                "T18",
+                "T19",
+                "T20",
+                "T21",
+                "T22",
+                "T23",
+                "T24",
+                "T25",
+                "T26",
+                "T27",
+                "T28",
+                "T29",
+                "T30",
+                "T31",
+                "T32",
+                "T33"
+              ],
+              "example": "T01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/K/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_苗栗縣",
+        "description": "API_模糊檢索_巷弄清單_苗栗縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_K",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| K01 | 苗栗市 |\n| K02 | 苑裡鎮 |\n| K03 | 通霄鎮 |\n| K04 | 公館鄉 |\n| K05 | 銅鑼鄉 |\n| K06 | 三義鄉 |\n| K07 | 西湖鄉 |\n| K08 | 頭屋鄉 |\n| K09 | 竹南鎮 |\n| K10 | 頭份市 |\n| K11 | 造橋鄉 |\n| K12 | 後龍鎮 |\n| K13 | 三灣鄉 |\n| K14 | 南庄鄉 |\n| K15 | 大湖鄉 |\n| K16 | 卓蘭鎮 |\n| K17 | 獅潭鄉 |\n| K18 | 泰安鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "K01",
+                "K02",
+                "K03",
+                "K04",
+                "K05",
+                "K06",
+                "K07",
+                "K08",
+                "K09",
+                "K10",
+                "K11",
+                "K12",
+                "K13",
+                "K14",
+                "K15",
+                "K16",
+                "K17",
+                "K18"
+              ],
+              "example": "K01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/H/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_桃園市",
+        "description": "API_模糊檢索_巷弄清單_桃園市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_H",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| H01 | 桃園區 |\n| H02 | 大溪區 |\n| H03 | 中壢區 |\n| H04 | 楊梅區 |\n| H05 | 蘆竹區 |\n| H06 | 大園區 |\n| H07 | 龜山區 |\n| H08 | 八德區 |\n| H09 | 龍潭區 |\n| H10 | 平鎮區 |\n| H11 | 新屋區 |\n| H12 | 觀音區 |\n| H13 | 復興區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "H01",
+                "H02",
+                "H03",
+                "H04",
+                "H05",
+                "H06",
+                "H07",
+                "H08",
+                "H09",
+                "H10",
+                "H11",
+                "H12",
+                "H13"
+              ],
+              "example": "H01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/E/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_高雄市",
+        "description": "API_模糊檢索_巷弄清單_高雄市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_E",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| E01 | 鹽埕區 |\n| E02 | 鼓山區 |\n| E03 | 左營區 |\n| E04 | 楠梓區 |\n| E05 | 三民區 |\n| E06 | 新興區 |\n| E07 | 前金區 |\n| E08 | 苓雅區 |\n| E09 | 前鎮區 |\n| E10 | 旗津區 |\n| E11 | 小港區 |\n| E12 | 鳳山區 |\n| E13 | 林園區 |\n| E14 | 大寮區 |\n| E15 | 大樹區 |\n| E16 | 大社區 |\n| E17 | 仁武區 |\n| E18 | 鳥松區 |\n| E19 | 岡山區 |\n| E20 | 橋頭區 |\n| E21 | 燕巢區 |\n| E22 | 田寮區 |\n| E23 | 阿蓮區 |\n| E24 | 路竹區 |\n| E25 | 湖內區 |\n| E26 | 茄萣區 |\n| E27 | 永安區 |\n| E28 | 彌陀區 |\n| E29 | 梓官區 |\n| E30 | 旗山區 |\n| E31 | 美濃區 |\n| E32 | 六龜區 |\n| E33 | 甲仙區 |\n| E34 | 杉林區 |\n| E35 | 內門區 |\n| E36 | 茂林區 |\n| E37 | 桃源區 |\n| E38 | 那瑪夏區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "E01",
+                "E02",
+                "E03",
+                "E04",
+                "E05",
+                "E06",
+                "E07",
+                "E08",
+                "E09",
+                "E10",
+                "E11",
+                "E12",
+                "E13",
+                "E14",
+                "E15",
+                "E16",
+                "E17",
+                "E18",
+                "E19",
+                "E20",
+                "E21",
+                "E22",
+                "E23",
+                "E24",
+                "E25",
+                "E26",
+                "E27",
+                "E28",
+                "E29",
+                "E30",
+                "E31",
+                "E32",
+                "E33",
+                "E34",
+                "E35",
+                "E36",
+                "E37",
+                "E38"
+              ],
+              "example": "E01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/C/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_基隆市",
+        "description": "API_模糊檢索_巷弄清單_基隆市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_C",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| C01 | 中正區 |\n| C02 | 七堵區 |\n| C03 | 暖暖區 |\n| C04 | 仁愛區 |\n| C05 | 中山區 |\n| C06 | 安樂區 |\n| C07 | 信義區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C01",
+                "C02",
+                "C03",
+                "C04",
+                "C05",
+                "C06",
+                "C07"
+              ],
+              "example": "C01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/Z/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_連江縣",
+        "description": "API_模糊檢索_巷弄清單_連江縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_Z",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| Z01 | 南竿鄉 |\n| Z02 | 北竿鄉 |\n| Z03 | 莒光鄉 |\n| Z04 | 東引鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Z01",
+                "Z02",
+                "Z03",
+                "Z04"
+              ],
+              "example": "Z01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/P/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_雲林縣",
+        "description": "API_模糊檢索_巷弄清單_雲林縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_P",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| P01 | 斗六市 |\n| P02 | 斗南鎮 |\n| P03 | 虎尾鎮 |\n| P04 | 西螺鎮 |\n| P05 | 土庫鎮 |\n| P06 | 北港鎮 |\n| P07 | 古坑鄉 |\n| P08 | 大埤鄉 |\n| P09 | 莿桐鄉 |\n| P10 | 林內鄉 |\n| P11 | 二崙鄉 |\n| P12 | 崙背鄉 |\n| P13 | 麥寮鄉 |\n| P14 | 東勢鄉 |\n| P15 | 褒忠鄉 |\n| P16 | 臺西鄉 |\n| P17 | 元長鄉 |\n| P18 | 四湖鄉 |\n| P19 | 口湖鄉 |\n| P20 | 水林鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "P01",
+                "P02",
+                "P03",
+                "P04",
+                "P05",
+                "P06",
+                "P07",
+                "P08",
+                "P09",
+                "P10",
+                "P11",
+                "P12",
+                "P13",
+                "P14",
+                "P15",
+                "P16",
+                "P17",
+                "P18",
+                "P19",
+                "P20"
+              ],
+              "example": "P01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/F/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_新北市",
+        "description": "API_模糊檢索_巷弄清單_新北市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_F",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| F01 | 新莊區 |\n| F02 | 林口區 |\n| F03 | 五股區 |\n| F04 | 蘆洲區 |\n| F05 | 三重區 |\n| F06 | 泰山區 |\n| F07 | 新店區 |\n| F08 | 石碇區 |\n| F09 | 深坑區 |\n| F10 | 坪林區 |\n| F11 | 烏來區 |\n| F14 | 板橋區 |\n| F15 | 三峽區 |\n| F16 | 鶯歌區 |\n| F17 | 樹林區 |\n| F18 | 中和區 |\n| F19 | 土城區 |\n| F21 | 瑞芳區 |\n| F22 | 平溪區 |\n| F23 | 雙溪區 |\n| F24 | 貢寮區 |\n| F25 | 金山區 |\n| F26 | 萬里區 |\n| F27 | 淡水區 |\n| F28 | 汐止區 |\n| F30 | 三芝區 |\n| F31 | 石門區 |\n| F32 | 八里區 |\n| F33 | 永和區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "F01",
+                "F02",
+                "F03",
+                "F04",
+                "F05",
+                "F06",
+                "F07",
+                "F08",
+                "F09",
+                "F10",
+                "F11",
+                "F14",
+                "F15",
+                "F16",
+                "F17",
+                "F18",
+                "F19",
+                "F21",
+                "F22",
+                "F23",
+                "F24",
+                "F25",
+                "F26",
+                "F27",
+                "F28",
+                "F30",
+                "F31",
+                "F32",
+                "F33"
+              ],
+              "example": "F01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/O/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_新竹市",
+        "description": "API_模糊檢索_巷弄清單_新竹市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_O",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| O01 | 新竹市 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "O01"
+              ],
+              "example": "O01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/J/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_新竹縣",
+        "description": "API_模糊檢索_巷弄清單_新竹縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_J",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| J02 | 竹東鎮 |\n| J03 | 關西鎮 |\n| J04 | 新埔鎮 |\n| J05 | 竹北市 |\n| J06 | 湖口鄉 |\n| J08 | 橫山鄉 |\n| J09 | 新豐鄉 |\n| J10 | 芎林鄉 |\n| J11 | 寶山鄉 |\n| J12 | 北埔鄉 |\n| J13 | 峨眉鄉 |\n| J14 | 尖石鄉 |\n| J15 | 五峰鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "J02",
+                "J03",
+                "J04",
+                "J05",
+                "J06",
+                "J08",
+                "J09",
+                "J10",
+                "J11",
+                "J12",
+                "J13",
+                "J14",
+                "J15"
+              ],
+              "example": "J02"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/I/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_嘉義市",
+        "description": "API_模糊檢索_巷弄清單_嘉義市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_I",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| I01 | 嘉義市 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "I01"
+              ],
+              "example": "I01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/Q/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_嘉義縣",
+        "description": "API_模糊檢索_巷弄清單_嘉義縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_Q",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| Q02 | 朴子市 |\n| Q03 | 布袋鎮 |\n| Q04 | 大林鎮 |\n| Q05 | 民雄鄉 |\n| Q06 | 溪口鄉 |\n| Q07 | 新港鄉 |\n| Q08 | 六腳鄉 |\n| Q09 | 東石鄉 |\n| Q10 | 義竹鄉 |\n| Q11 | 鹿草鄉 |\n| Q12 | 太保市 |\n| Q13 | 水上鄉 |\n| Q14 | 中埔鄉 |\n| Q15 | 竹崎鄉 |\n| Q16 | 梅山鄉 |\n| Q17 | 番路鄉 |\n| Q18 | 大埔鄉 |\n| Q20 | 阿里山鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Q02",
+                "Q03",
+                "Q04",
+                "Q05",
+                "Q06",
+                "Q07",
+                "Q08",
+                "Q09",
+                "Q10",
+                "Q11",
+                "Q12",
+                "Q13",
+                "Q14",
+                "Q15",
+                "Q16",
+                "Q17",
+                "Q18",
+                "Q20"
+              ],
+              "example": "Q02"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/N/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_彰化縣",
+        "description": "API_模糊檢索_巷弄清單_彰化縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_N",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| N01 | 彰化市 |\n| N02 | 鹿港鎮 |\n| N03 | 和美鎮 |\n| N04 | 北斗鎮 |\n| N05 | 員林市 |\n| N06 | 溪湖鎮 |\n| N07 | 田中鎮 |\n| N08 | 二林鎮 |\n| N09 | 線西鄉 |\n| N10 | 伸港鄉 |\n| N11 | 福興鄉 |\n| N12 | 秀水鄉 |\n| N13 | 花壇鄉 |\n| N14 | 芬園鄉 |\n| N15 | 大村鄉 |\n| N16 | 埔鹽鄉 |\n| N17 | 埔心鄉 |\n| N18 | 永靖鄉 |\n| N19 | 社頭鄉 |\n| N20 | 二水鄉 |\n| N21 | 田尾鄉 |\n| N22 | 埤頭鄉 |\n| N23 | 芳苑鄉 |\n| N24 | 大城鄉 |\n| N25 | 竹塘鄉 |\n| N26 | 溪州鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "N01",
+                "N02",
+                "N03",
+                "N04",
+                "N05",
+                "N06",
+                "N07",
+                "N08",
+                "N09",
+                "N10",
+                "N11",
+                "N12",
+                "N13",
+                "N14",
+                "N15",
+                "N16",
+                "N17",
+                "N18",
+                "N19",
+                "N20",
+                "N21",
+                "N22",
+                "N23",
+                "N24",
+                "N25",
+                "N26"
+              ],
+              "example": "N01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/B/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_臺中市",
+        "description": "API_模糊檢索_巷弄清單_臺中市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_B",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| B01 | 中區 |\n| B02 | 東區 |\n| B03 | 南區 |\n| B04 | 西區 |\n| B05 | 北區 |\n| B06 | 西屯區 |\n| B07 | 南屯區 |\n| B08 | 北屯區 |\n| B09 | 豐原區 |\n| B10 | 東勢區 |\n| B11 | 大甲區 |\n| B12 | 清水區 |\n| B13 | 沙鹿區 |\n| B14 | 梧棲區 |\n| B15 | 后里區 |\n| B16 | 神岡區 |\n| B17 | 潭子區 |\n| B18 | 大雅區 |\n| B19 | 新社區 |\n| B20 | 石岡區 |\n| B21 | 外埔區 |\n| B22 | 大安區 |\n| B23 | 烏日區 |\n| B24 | 大肚區 |\n| B25 | 龍井區 |\n| B26 | 霧峰區 |\n| B27 | 太平區 |\n| B28 | 大里區 |\n| B29 | 和平區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15",
+                "B16",
+                "B17",
+                "B18",
+                "B19",
+                "B20",
+                "B21",
+                "B22",
+                "B23",
+                "B24",
+                "B25",
+                "B26",
+                "B27",
+                "B28",
+                "B29"
+              ],
+              "example": "B01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/A/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_臺北市",
+        "description": "API_模糊檢索_巷弄清單_臺北市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_A",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| A01 | 松山區 |\n| A02 | 大安區 |\n| A03 | 中正區 |\n| A05 | 萬華區 |\n| A09 | 大同區 |\n| A10 | 中山區 |\n| A11 | 文山區 |\n| A13 | 南港區 |\n| A14 | 內湖區 |\n| A15 | 士林區 |\n| A16 | 北投區 |\n| A17 | 信義區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A01",
+                "A02",
+                "A03",
+                "A05",
+                "A09",
+                "A10",
+                "A11",
+                "A13",
+                "A14",
+                "A15",
+                "A16",
+                "A17"
+              ],
+              "example": "A01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/V/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_臺東縣",
+        "description": "API_模糊檢索_巷弄清單_臺東縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_V",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| V01 | 臺東市 |\n| V02 | 成功鎮 |\n| V03 | 關山鎮 |\n| V04 | 卑南鄉 |\n| V05 | 大武鄉 |\n| V06 | 太麻里鄉 |\n| V07 | 東河鄉 |\n| V08 | 長濱鄉 |\n| V09 | 鹿野鄉 |\n| V10 | 池上鄉 |\n| V11 | 綠島鄉 |\n| V12 | 延平鄉 |\n| V13 | 海端鄉 |\n| V14 | 達仁鄉 |\n| V15 | 金峰鄉 |\n| V16 | 蘭嶼鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "V01",
+                "V02",
+                "V03",
+                "V04",
+                "V05",
+                "V06",
+                "V07",
+                "V08",
+                "V09",
+                "V10",
+                "V11",
+                "V12",
+                "V13",
+                "V14",
+                "V15",
+                "V16"
+              ],
+              "example": "V01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/D/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_臺南市",
+        "description": "API_模糊檢索_巷弄清單_臺南市",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_D",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| D01 | 東區 |\n| D02 | 南區 |\n| D04 | 北區 |\n| D06 | 安南區 |\n| D07 | 安平區 |\n| D08 | 中西區 |\n| D09 | 新營區 |\n| D10 | 鹽水區 |\n| D11 | 柳營區 |\n| D12 | 白河區 |\n| D13 | 後壁區 |\n| D14 | 東山區 |\n| D15 | 麻豆區 |\n| D16 | 下營區 |\n| D17 | 六甲區 |\n| D18 | 官田區 |\n| D19 | 大內區 |\n| D20 | 佳里區 |\n| D21 | 西港區 |\n| D22 | 七股區 |\n| D23 | 將軍區 |\n| D24 | 北門區 |\n| D25 | 學甲區 |\n| D26 | 新化區 |\n| D27 | 善化區 |\n| D28 | 新市區 |\n| D29 | 安定區 |\n| D30 | 山上區 |\n| D31 | 左鎮區 |\n| D32 | 仁德區 |\n| D33 | 歸仁區 |\n| D34 | 關廟區 |\n| D35 | 龍崎區 |\n| D36 | 玉井區 |\n| D37 | 楠西區 |\n| D38 | 南化區 |\n| D39 | 永康區 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "D01",
+                "D02",
+                "D04",
+                "D06",
+                "D07",
+                "D08",
+                "D09",
+                "D10",
+                "D11",
+                "D12",
+                "D13",
+                "D14",
+                "D15",
+                "D16",
+                "D17",
+                "D18",
+                "D19",
+                "D20",
+                "D21",
+                "D22",
+                "D23",
+                "D24",
+                "D25",
+                "D26",
+                "D27",
+                "D28",
+                "D29",
+                "D30",
+                "D31",
+                "D32",
+                "D33",
+                "D34",
+                "D35",
+                "D36",
+                "D37",
+                "D38",
+                "D39"
+              ],
+              "example": "D01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/ListRoadLaneAlley/X/{town}/{road}": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_巷弄清單_澎湖縣",
+        "description": "API_模糊檢索_巷弄清單_澎湖縣",
+        "operationId": "2dms_addrm_v1_ListRoadLaneAlley_X",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "path",
+            "required": true,
+            "description": "鄉鎮市區代碼。\n\n**列舉項目對照表：**\n\n| 代碼 | 名稱 |\n| :--- | :--- |\n| X01 | 馬公市 |\n| X02 | 湖西鄉 |\n| X03 | 白沙鄉 |\n| X04 | 西嶼鄉 |\n| X05 | 望安鄉 |\n| X06 | 七美鄉 |",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "X01",
+                "X02",
+                "X03",
+                "X04",
+                "X05",
+                "X06"
+              ],
+              "example": "X01"
+            }
+          },
+          {
+            "name": "road",
+            "in": "path",
+            "required": true,
+            "description": "道路名稱",
+            "schema": {
+              "type": "string",
+              "example": "重慶南路"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadLaneAlleyList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/PointQueryAddr": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_點坐標回傳門牌_全國",
+        "description": "API_模糊檢索_點坐標回傳門牌_全國",
+        "operationId": "2dms_addrm_v1_PointQueryAddr",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "description": "點坐標 X\n\n需搭配 oSRS 欄位指定之坐標系統, 經緯度建議小數點帶至第6位",
+            "in": "query",
+            "name": "oPX",
+            "schema": {
+              "default": "",
+              "type": "number",
+              "format": "double",
+              "example": 121.517055
+            }
+          },
+          {
+            "description": "點坐標 Y\n\n需搭配 oSRS 欄位指定之坐標系統, 經緯度建議小數點帶至第6位",
+            "in": "query",
+            "name": "oPY",
+            "schema": {
+              "default": "",
+              "type": "number",
+              "format": "double",
+              "example": 25.047123
+            }
+          },
+          {
+            "description": "搜尋範圍公尺",
+            "in": "query",
+            "name": "oBuffer",
+            "schema": {
+              "default": "200",
+              "type": "integer",
+              "example": 500
+            }
+          },
+          {
+            "description": "坐標系統",
+            "in": "query",
+            "name": "oSRS",
+            "schema": {
+              "default": "EPSG:4326",
+              "type": "string",
+              "example": "EPSG:4326"
+            }
+          },
+          {
+            "description": "資料格式",
+            "in": "query",
+            "name": "oResultDataType",
+            "schema": {
+              "default": "geojson",
+              "type": "string",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/LineQueryAddr": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_線坐標回傳門牌_全國",
+        "description": "API_模糊檢索_線坐標回傳門牌_全國",
+        "operationId": "2dms_addrm_v1_LineQueryAddr",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "description": "坐標集合 (格式: x1,y1,x2,y2...)\n\n需搭配 oSRS 欄位指定之坐標系統, 經緯度建議小數點帶至第6位",
+            "in": "query",
+            "name": "oLineXY_List",
+            "schema": {
+              "default": "",
+              "type": "string",
+              "example": "121.51,25.04,121.52,25.05"
+            }
+          },
+          {
+            "description": "搜尋範圍公尺",
+            "in": "query",
+            "name": "oBuffer",
+            "schema": {
+              "default": "200",
+              "type": "integer",
+              "example": 500
+            }
+          },
+          {
+            "description": "坐標系統",
+            "in": "query",
+            "name": "oSRS",
+            "schema": {
+              "default": "EPSG:4326",
+              "type": "string",
+              "example": "EPSG:4326"
+            }
+          },
+          {
+            "description": "資料格式",
+            "in": "query",
+            "name": "oResultDataType",
+            "schema": {
+              "default": "geojson",
+              "type": "string",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/idc/PolygonQueryAddr": {
+      "get": {
+        "tags": [
+          "模糊檢索"
+        ],
+        "summary": "API_模糊檢索_面坐標回傳門牌_全國",
+        "description": "API_模糊檢索_面坐標回傳門牌_全國",
+        "operationId": "2dms_addrm_v1_PolygonQueryAddr",
+        "x-updateTime": "2026-07-02T00:00:00+08:00",
+        "parameters": [
+          {
+            "description": "坐標集合 (格式: x1,y1,x2,y2,x3,y3...)\n\n需搭配 oSRS 欄位指定之坐標系統, 經緯度建議小數點帶至第6位",
+            "in": "query",
+            "name": "oPolygonXY_List",
+            "schema": {
+              "default": "",
+              "type": "string",
+              "example": "121.51,25.04,121.52,25.04,121.52,25.05,121.51,25.05,121.51,25.04"
+            }
+          },
+          {
+            "description": "搜尋範圍公尺",
+            "in": "query",
+            "name": "oBuffer",
+            "schema": {
+              "default": "50",
+              "type": "integer",
+              "example": 500
+            }
+          },
+          {
+            "description": "坐標系統",
+            "in": "query",
+            "name": "oSRS",
+            "schema": {
+              "default": "EPSG:4326",
+              "type": "string",
+              "example": "EPSG:4326"
+            }
+          },
+          {
+            "description": "資料格式",
+            "in": "query",
+            "name": "oResultDataType",
+            "schema": {
+              "default": "geojson",
+              "type": "string",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TextQueryAddressList": {
+        "type": "array",
+        "xml": {
+          "name": "addressItems",
+          "wrapped": true
+        },
+        "items": {
+          "$ref": "#/components/schemas/TextQueryAddressItem"
+        }
+      },
+      "RoadLaneAlleyList": {
+        "type": "array",
+        "xml": {
+          "name": "laneAlleyItems",
+          "wrapped": true
+        },
+        "items": {
+          "$ref": "#/components/schemas/RoadLaneAlleyItem"
+        }
+      },
+      "RoadList": {
+        "type": "array",
+        "xml": {
+          "name": "roads",
+          "wrapped": true
+        },
+        "items": {
+          "$ref": "#/components/schemas/RoadItem"
+        }
+      },
+      "TextQueryMapList": {
+        "type": "array",
+        "xml": {
+          "name": "root",
+          "wrapped": true
+        },
+        "items": {
+          "$ref": "#/components/schemas/TextQueryMapItem"
+        }
+      },
+      "TextQueryAddressItem": {
+        "type": "object",
+        "xml": {
+          "name": "addressItem"
+        },
+        "properties": {
+          "content": {
+            "description": "完整門牌",
+            "type": "string"
+          },
+          "location": {
+            "description": "圖資位置(WGS84)",
+            "type": "string"
+          }
+        }
+      },
+      "RoadLaneAlleyItem": {
+        "type": "object",
+        "xml": {
+          "name": "laneAlleyItem"
+        },
+        "properties": {
+          "lane": {
+            "description": "巷名",
+            "type": "string"
+          },
+          "alleys": {
+            "description": "弄名",
+            "type": "string"
+          }
+        }
+      },
+      "RoadItem": {
+        "type": "object",
+        "xml": {
+          "name": "road"
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "道路名稱"
+          }
+        }
+      },
+      "TextQueryMapItem": {
+        "type": "object",
+        "xml": {
+          "name": "ITEM"
+        },
+        "properties": {
+          "CONTENT": {
+            "description": "完整名稱",
+            "type": "string"
+          },
+          "KEY": {
+            "description": "鍵值",
+            "type": "string"
+          },
+          "LOCATION": {
+            "description": "圖資位置(WGS84)",
+            "type": "string"
+          },
+          "REMARK": {
+            "description": "中文說明",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
